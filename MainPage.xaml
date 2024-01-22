@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="Transhef.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Transhef"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    <Grid x:Name="MainPanel">
+        <Rectangle x:Name="TTB" VerticalAlignment="Top" Canvas.ZIndex="9999" Fill="Transparent" Height="40"/>
+        <Grid x:Name="TTBContent"  
+      Height="48" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="TitleBarIcon"
+           Grid.Column="0"
+           HorizontalAlignment="Center"
+           Width="25" Height="25"
+           Margin="8,0,0,0">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Square44x44Logo.scale-400.png"/>
+                </Image.Source>
+            </Image>
+            <TextBlock x:Name="TitleBarTextBlock" 
+               Text="Transhef" 
+               FontSize="13"
+               Grid.Column="1"
+               VerticalAlignment="Center"
+               Margin="10,0,0,0"/>
+        </Grid>
+        <NavigationView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" x:Name="MainNavView" SelectionChanged="MainNavView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Translate" Icon="Home" x:Name="Home"/>
+                <NavigationViewItem Content="History" Icon="Clock" x:Name="History"/>
+            </NavigationView.MenuItems>
+            <NavigationView.Content>
+                <Frame Background="{StaticResource LayerFillColorDefaultBrush}" x:Name="MainFrame">
+                    <TextBlock>Cawntent</TextBlock>
+                </Frame>
+            </NavigationView.Content>
+        </NavigationView>
+    </Grid>
+</Page>
