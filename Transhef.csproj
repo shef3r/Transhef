@@ -222,6 +222,12 @@
       <Version>2.8.6</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="TransLib\TransLib.csproj">
+      <Project>{1c318aa2-194c-4228-80ed-19e52db20fd4}</Project>
+      <Name>TransLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

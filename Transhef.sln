@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transhef", "Transhef.csproj", "{6F77EA8A-8C4F-4AC3-82D9-02BF6F360992}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransLib", "..\TransLib\TransLib.csproj", "{1C318AA2-194C-4228-80ED-19E52DB20FD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransLib", "TransLib\TransLib.csproj", "{1C318AA2-194C-4228-80ED-19E52DB20FD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
