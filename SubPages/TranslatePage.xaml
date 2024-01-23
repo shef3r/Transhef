@@ -11,13 +11,13 @@
     <Grid Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="0.5"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="10" Grid.Row="0">
+        <Grid Margin="0" Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -27,7 +27,7 @@
                     Height="50"
                     Background="{StaticResource LayerFillColorDefaultBrush}"
                     Margin="0"
-                    CornerRadius="10"
+                    CornerRadius="0"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.HorizontalScrollMode="Enabled"
@@ -44,7 +44,7 @@
             <TextBox
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                CornerRadius="8"
+                CornerRadius="0"
                 Grid.Row="1"
                 PlaceholderText="What would you like to translate?"
                 BorderThickness="0"/>
@@ -63,7 +63,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Margin="10" Grid.Column="0">
+            <Grid Margin="0" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
@@ -72,10 +72,10 @@
                 <StackPanel Orientation="Vertical" Grid.Row="0">
                     <ListView
                         x:Name="OutputLanguageScroller"
-                        Height="50"
                         Background="{StaticResource LayerFillColorDefaultBrush}"
-                        Margin="0,-12,0,0"
-                        CornerRadius="10"
+                        Margin="0,0,0,0"
+                        CornerRadius="0"
+                        Height="50"
                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.HorizontalScrollMode="Enabled"
@@ -100,24 +100,27 @@
                     BorderThickness="0"
                     Grid.Column="0"
                     PlaceholderText="Your output will appear here..."
-                    CornerRadius="8"
+                    CornerRadius="0"
                     IsReadOnly="True"
-                    Margin="0,0,0,5"/>
-                    <Grid Grid.Column="1" Margin="8,0,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="70"/>
-                            <RowDefinition Height="70"/>
-                            <RowDefinition Height="70"/>
-                        </Grid.RowDefinitions>
-                        <AppBarButton Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,5,0,0" CornerRadius="8" Icon="Copy" Label="Copy" LabelPosition="Default"/>
-                        <AppBarButton Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,5,0,0" CornerRadius="8" Icon="Share" Label="Share" LabelPosition="Default"/>
-                        <AppBarButton Background="{StaticResource SystemControlForegroundAccentBrush}" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,5,0,0" CornerRadius="8" Label="Translate" LabelPosition="Default">
-                            <AppBarButton.Icon>
-                                <FontIcon Glyph="&#xE895;"/>
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                    </Grid>
+                    Margin="0,0,0,0"/>
+                    <ScrollViewer Grid.Column="1" Margin="0" HorizontalScrollBarVisibility="Disabled" IsHorizontalRailEnabled="False">
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="62"/>
+                                <RowDefinition Height="62"/>
+                                <RowDefinition Height="62"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <AppBarButton Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,0,0,0" CornerRadius="8" Icon="Copy" Label="Copy" LabelPosition="Default"/>
+                            <AppBarButton Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,0,0,0" CornerRadius="8" Icon="Share" Label="Share" LabelPosition="Default"/>
+                            <AppBarButton Background="{StaticResource SystemControlForegroundAccentBrush}" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" CornerRadius="8" Label="Translate" LabelPosition="Default">
+                                <AppBarButton.Icon>
+                                    <FontIcon Glyph="&#xE895;"/>
+                                </AppBarButton.Icon>
+                            </AppBarButton>
+                        </Grid>
+                    </ScrollViewer>
                 </Grid>
             </Grid>
         </Grid>

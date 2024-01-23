@@ -25,6 +25,11 @@ namespace Transhef.SubPages
         public TranslatePage()
         {
             this.InitializeComponent();
+            foreach (KeyValuePair<string, string> lang in TransLib.Variables.LanguagePairs)
+            {
+                InputLanguageScroller.Items.Add(lang.Key);
+                OutputLanguageScroller.Items.Add(lang.Key);
+            }
         }
     }
 }
