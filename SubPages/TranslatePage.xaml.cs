@@ -33,7 +33,10 @@ namespace Transhef.SubPages
 
         private void Copy_Clicked(object sender, RoutedEventArgs e)
         {
-            // make copying work :p
+            System.Diagnostics.Debug.WriteLine(outputBox.Text);
+            DataPackage dataPackage = new DataPackage();
+            dataPackage.SetText(outputBox.Text);
+            Clipboard.SetContent(dataPackage);
         }
 
         private void Switch_Clicked(object sender, RoutedEventArgs e)

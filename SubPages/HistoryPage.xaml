@@ -12,11 +12,7 @@
         <ListView SelectionMode="None" Background="Transparent" x:Name="historyList">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="80"/>
-                        </Grid.RowDefinitions>
+                    <Grid Padding="15" MaxWidth="600" BorderThickness="1" BorderBrush="{StaticResource ButtonDisabledBorderThemeBrush}" Margin="5" CornerRadius="10" VerticalAlignment="Center" Background="{StaticResource LayerFillColorDefaultBrush}">
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -27,26 +23,32 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="20"/>
+                                    <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{Binding input}"/>
-                                <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity=".7" Text="{Binding inputLanguage}"/>
+                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" HorizontalAlignment="Right" TextTrimming="CharacterEllipsis" Text="{Binding input}"/>
+                                <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Right" Opacity=".7" Text="{Binding inputLanguage}"/>
+                                <CommandBar Grid.Row="2" DefaultLabelPosition="Collapsed" OverflowButtonVisibility="Collapsed" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="0,0,-10,0">
+                                    <CommandBar.PrimaryCommands>
+                                        <AppBarButton Width="40" Icon="Copy" Label="Copy query" />
+                                    </CommandBar.PrimaryCommands>
+                                </CommandBar>
                             </Grid>
                             <SymbolIcon Grid.Column="1" Symbol="Forward"/>
                             <Grid Grid.Column="2">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="20"/>
+                                    <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{Binding output}" />
-                                <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity=".7" Text="{Binding outputLanguage}"/>
+                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" Text="{Binding output}" />
+                                <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" Opacity=".7" Text="{Binding outputLanguage}"/>
+                                <CommandBar DefaultLabelPosition="Collapsed" Grid.Row="2" OverflowButtonVisibility="Collapsed" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                                    <CommandBar.PrimaryCommands>
+                                        <AppBarButton Icon="Copy" Label="Copy translation" Width="40" />
+                                    </CommandBar.PrimaryCommands>
+                                </CommandBar>
                             </Grid>
                         </Grid>
-                        <CommandBar DefaultLabelPosition="Right" Grid.Row="1" OverflowButtonVisibility="Collapsed" VerticalAlignment="Stretch">
-                            <CommandBar.PrimaryCommands>
-                                <AppBarButton Icon="Copy" Label="Copy query" />
-                                <AppBarButton Icon="Copy" Label="Copy translation" />
-                            </CommandBar.PrimaryCommands>
-                        </CommandBar>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
