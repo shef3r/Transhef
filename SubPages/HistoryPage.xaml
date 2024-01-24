@@ -9,7 +9,7 @@
     Background="Transparent">
 
     <ScrollViewer Padding="20">
-        <ListView SelectionMode="None" Background="Transparent">
+        <ListView SelectionMode="None" Background="Transparent" x:Name="historyList">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="5">
@@ -28,7 +28,7 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="20"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" Text="{Binding input}"/>
+                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{Binding input}"/>
                                 <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity=".7" Text="{Binding inputLanguage}"/>
                             </Grid>
                             <SymbolIcon Grid.Column="1" Symbol="Forward"/>
@@ -37,7 +37,7 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="20"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" Text="{Binding output}" />
+                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{Binding output}" />
                                 <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity=".7" Text="{Binding outputLanguage}"/>
                             </Grid>
                         </Grid>
