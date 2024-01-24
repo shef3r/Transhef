@@ -8,7 +8,48 @@
     mc:Ignorable="d"
     Background="Transparent">
 
-    <Grid>
-        <TextBlock>history page :p</TextBlock>
-    </Grid>
+    <ScrollViewer Padding="20">
+        <ListView SelectionMode="None" Background="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" Text="{Binding input}"/>
+                                <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity=".7" Text="{Binding inputLanguage}"/>
+                            </Grid>
+                            <SymbolIcon Grid.Column="1" Symbol="Forward"/>
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" Text="{Binding output}" />
+                                <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity=".7" Text="{Binding outputLanguage}"/>
+                            </Grid>
+                        </Grid>
+                        <CommandBar DefaultLabelPosition="Right" Grid.Row="1" OverflowButtonVisibility="Collapsed" VerticalAlignment="Stretch">
+                            <CommandBar.PrimaryCommands>
+                                <AppBarButton Icon="Copy" Label="Copy query" />
+                                <AppBarButton Icon="Copy" Label="Copy translation" />
+                            </CommandBar.PrimaryCommands>
+                        </CommandBar>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ScrollViewer>
 </Page>

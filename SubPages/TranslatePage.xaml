@@ -113,7 +113,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <AppBarButton Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,0,0,0" CornerRadius="8" Icon="Copy" Label="Copy" LabelPosition="Default"/>
-                            <AppBarButton Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,0,0,0" CornerRadius="8" Icon="Share" Label="Share" LabelPosition="Default"/>
+                            <AppBarButton Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,0,0,0" CornerRadius="8" Icon="Switch" Label="Switch" LabelPosition="Default"/>
                             <AppBarButton Background="{StaticResource SystemControlForegroundAccentBrush}" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" CornerRadius="8" Label="Translate" LabelPosition="Default">
                                 <AppBarButton.Icon>
                                     <FontIcon Glyph="&#xE895;"/>
