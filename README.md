@@ -1,8 +1,7 @@
-<center>
-    <img src=Assets/StoreLogo.scale-400.png>
-    <br>
-    <h2>Transhef</h2>
-</center>
+<p align=center>
+    <img align=center src="Assets/StoreLogo.scale-400.png">
+</p>
+<h2 align=center>Transhef</h2>
 
 A simple, lightweight and gorgeous translator app for Windows 10 and 11. Avialable soon on GH Releases and Microsoft Store.
 
