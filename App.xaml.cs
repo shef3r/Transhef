@@ -26,6 +26,8 @@ namespace Transhef
         }
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            bool canEnablePrelaunch = Windows.Foundation.Metadata.ApiInformation.IsMethodPresent("Windows.ApplicationModel.Core.CoreApplication", "EnablePrelaunch");
+
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame == null)
             {
@@ -41,6 +43,11 @@ namespace Transhef
 
             if (e.PrelaunchActivated == false)
             {
+                if (canEnablePrelaunch)
+                {
+                    Windows.ApplicationModel.Core.CoreApplication.EnablePrelaunch(true);
+                }
+
                 if (rootFrame.Content == null)
                 {
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);

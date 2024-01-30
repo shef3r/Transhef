@@ -34,7 +34,12 @@ namespace Transhef
             MainNavView.SelectedItem = Home;
         }
 
-        private async void MainNavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private void Home_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Focus(FocusState.Programmatic); // remove ugly focus rectangle on startup (moving it directly to the language selector), while keeping all elements focusable
+        }
+
+        private void MainNavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             if (args.SelectedItem == Home) { MainFrame.Navigate(typeof(TranslatePage)); }
             else if (args.SelectedItem == History) { MainFrame.Navigate(typeof(HistoryPage)); }

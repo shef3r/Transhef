@@ -36,7 +36,7 @@
         </Grid>
         <NavigationView IsSettingsVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" x:Name="MainNavView" SelectionChanged="MainNavView_SelectionChanged">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Translate" Icon="Home" x:Name="Home"/>
+                <NavigationViewItem Content="Translate" Loaded="Home_Loaded" Icon="Home" x:Name="Home"/>
                 <NavigationViewItem Content="History" Icon="Clock" x:Name="History"/>
             </NavigationView.MenuItems>
             <NavigationView.Content>
