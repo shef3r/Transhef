@@ -52,7 +52,7 @@
                 CornerRadius="0"
                 Grid.Row="1"
                 PlaceholderText="What would you like to translate?"
-                BorderThickness="0" Background="Transparent"/>
+                BorderThickness="0" Background="Transparent" AcceptsReturn="False" TextWrapping="Wrap"/>
         </Grid>
 
         <Grid x:Name="seperator" Grid.Row="1">
@@ -111,7 +111,7 @@
                     PlaceholderText="Your output will appear here..."
                     CornerRadius="0"
                     IsReadOnly="True"
-                    Margin="0,0,0,0" Background="Transparent"/>
+                    Margin="0,0,0,0" Background="Transparent" TextWrapping="Wrap"/>
                     <ScrollViewer Grid.Column="1" Margin="0" HorizontalScrollBarVisibility="Disabled" IsHorizontalRailEnabled="False">
                         <Grid Margin="0,0,0,0">
                             <Grid.RowDefinitions>

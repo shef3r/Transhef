@@ -51,13 +51,16 @@ namespace Transhef.SubPages
         {
             if (!string.IsNullOrEmpty(inputBox.Text) && InputLanguageScroller.SelectedItem != null && OutputLanguageScroller.SelectedItem != null)
             {
+                (sender as AppBarButton).IsEnabled = false;
                 TranslationObject obj = new TranslationObject() { input = inputBox.Text, inputLanguageorCode = InputLanguageScroller.SelectedItem.ToString(), outputLanguageorCode = OutputLanguageScroller.SelectedItem.ToString() };
                 try
                 {
-                    Translation translation = Methods.Translate(obj); 
+                    Translation translation = await Methods.TranslateAsync(obj); 
                     outputBox.Text = translation.output;
+                    if (!translation.savedToHistory) { ShowError(null, "Unfortunately, your translation was too long to add to history. Otherwise, it went fine."); }
                 }
                 catch (Exception ex) { ShowError(ex); }
+                (sender as AppBarButton).IsEnabled = true;
             }
             else
             {

@@ -31,7 +31,6 @@ namespace Transhef.SubPages
         private void Copy(object sender, RoutedEventArgs e)
         {
             string text = ((sender as AppBarButton).CommandParameter as string);
-            System.Diagnostics.Debug.WriteLine(text);
             DataPackage dataPackage = new DataPackage();
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
