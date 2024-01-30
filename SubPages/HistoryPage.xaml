@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="Transparent">
-
     <ScrollViewer Padding="20">
         <ListView SelectionMode="None" Background="Transparent" x:Name="historyList">
             <ListView.ItemTemplate>
@@ -29,7 +28,7 @@
                                 <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Right" Opacity=".7" Text="{Binding inputLanguage}"/>
                                 <CommandBar Grid.Row="2" DefaultLabelPosition="Collapsed" OverflowButtonVisibility="Collapsed" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="0,0,-10,0">
                                     <CommandBar.PrimaryCommands>
-                                        <AppBarButton Width="40" Icon="Copy" Label="Copy query" />
+                                        <AppBarButton Click="Copy" CommandParameter="{Binding input}" Width="40" Icon="Copy" Label="Copy query" />
                                     </CommandBar.PrimaryCommands>
                                 </CommandBar>
                             </Grid>
@@ -44,7 +43,7 @@
                                 <TextBlock Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" Opacity=".7" Text="{Binding outputLanguage}"/>
                                 <CommandBar DefaultLabelPosition="Collapsed" Grid.Row="2" OverflowButtonVisibility="Collapsed" VerticalAlignment="Stretch" HorizontalAlignment="Left">
                                     <CommandBar.PrimaryCommands>
-                                        <AppBarButton Icon="Copy" Label="Copy translation" Width="40" />
+                                        <AppBarButton Click="Copy" CommandParameter="{Binding output}" Icon="Copy" Label="Copy translation" Width="40" />
                                     </CommandBar.PrimaryCommands>
                                 </CommandBar>
                             </Grid>
