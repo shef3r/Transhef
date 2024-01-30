@@ -25,19 +25,23 @@
                 <ListView
                     x:Name="InputLanguageScroller"
                     Height="50"
-                    Background="{StaticResource LayerFillColorDefaultBrush}"
                     Margin="0"
                     CornerRadius="0"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.HorizontalScrollMode="Enabled"
-                    ScrollViewer.VerticalScrollMode="Disabled">
+                    ScrollViewer.VerticalScrollMode="Disabled" Background="Transparent">
 
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Background="Transparent" Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Margin="0,0,2,0" TextAlignment="Center" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
 
@@ -48,15 +52,15 @@
                 CornerRadius="0"
                 Grid.Row="1"
                 PlaceholderText="What would you like to translate?"
-                BorderThickness="0"/>
+                BorderThickness="0" Background="Transparent"/>
         </Grid>
 
         <Grid x:Name="seperator" Grid.Row="1">
             <Border
                 VerticalAlignment="Center"
-                BorderBrush="{StaticResource AppBarSeparatorForegroundThemeBrush}"
-                BorderThickness="2"
-                Opacity=".4"/>
+                BorderBrush="{StaticResource ButtonBorderThemeBrush}"
+                BorderThickness="1"
+                Opacity=".1"/>
         </Grid>
 
         <Grid Grid.Row="2">
@@ -73,15 +77,18 @@
                 <StackPanel Orientation="Vertical" Grid.Row="0">
                     <ListView
                         x:Name="OutputLanguageScroller"
-                        Background="{StaticResource LayerFillColorDefaultBrush}"
                         Margin="0,0,0,0"
                         CornerRadius="0"
                         Height="50"
                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.HorizontalScrollMode="Enabled"
-                        ScrollViewer.VerticalScrollMode="Disabled">
-
+                        ScrollViewer.VerticalScrollMode="Disabled" Background="Transparent">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Background="Transparent" Orientation="Horizontal" />
@@ -104,7 +111,7 @@
                     PlaceholderText="Your output will appear here..."
                     CornerRadius="0"
                     IsReadOnly="True"
-                    Margin="0,0,0,0"/>
+                    Margin="0,0,0,0" Background="Transparent"/>
                     <ScrollViewer Grid.Column="1" Margin="0" HorizontalScrollBarVisibility="Disabled" IsHorizontalRailEnabled="False">
                         <Grid Margin="0,0,0,0">
                             <Grid.RowDefinitions>

@@ -34,15 +34,13 @@
                VerticalAlignment="Center"
                Margin="10,0,0,0"/>
         </Grid>
-        <NavigationView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" x:Name="MainNavView" SelectionChanged="MainNavView_SelectionChanged">
+        <NavigationView IsSettingsVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" x:Name="MainNavView" SelectionChanged="MainNavView_SelectionChanged">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Translate" Icon="Home" x:Name="Home"/>
                 <NavigationViewItem Content="History" Icon="Clock" x:Name="History"/>
             </NavigationView.MenuItems>
             <NavigationView.Content>
-                <Frame Background="{StaticResource LayerFillColorDefaultBrush}" x:Name="MainFrame">
-                    <TextBlock>Cawntent</TextBlock>
-                </Frame>
+                <Frame x:Name="MainFrame"/>
             </NavigationView.Content>
         </NavigationView>
     </Grid>

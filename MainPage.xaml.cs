@@ -38,7 +38,6 @@ namespace Transhef
         {
             if (args.SelectedItem == Home) { MainFrame.Navigate(typeof(TranslatePage)); }
             else if (args.SelectedItem == History) { MainFrame.Navigate(typeof(HistoryPage)); }
-            else if (args.IsSettingsSelected) { MainFrame.Navigate(typeof(SettingsPage)); }
         }
     }
 }
