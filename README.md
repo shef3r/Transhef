@@ -1,7 +1,7 @@
 <p align=center>
     <img align=center src="Assets/StoreLogo.scale-400.png">
 </p>
-<h2 align=center>Transhef</h2>
+<h2 align=center>Transhef <b>(alpha)</b></h2>
 
 A simple, lightweight and gorgeous translator app for Windows 10 and 11. Avialable soon on GH Releases and Microsoft Store.
 
@@ -26,9 +26,7 @@ A simple, lightweight and gorgeous translator app for Windows 10 and 11. Avialab
 - Done!
 
 ### Contribution
-Feel free to submit PRs to issues that haven't been solved and feature requests have been tagged as "planned". If you have a feature request, open an issue.
-
-I do not accept translations yet because the app is in a very early stage and it has not been modified to support different languages yet (ironic, isn't it?).
+Feel free to submit PRs to issues that haven't been solved and feature requests have been tagged as "planned". If you have a feature request, open an issue. I do not accept translations yet because the app is in a very early stage and it has not been modified to support different languages yet (ironic, isn't it?).
 
 #### Contributors
 
