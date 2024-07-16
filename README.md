@@ -1,9 +1,9 @@
 <p align=center>
-    <img align=center src="Assets/StoreLogo.scale-400.png">
+    <img align=center src="Assets/logowtext.png" alt="Transhef logo">
+<br><br>
+<i>A simple, lightweight and gorgeous translator app for Windows 10 and 11.<br> Avialable on GH Releases and later in Microsoft Store.</i><br><br>
+<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat">
 </p>
-<h2 align=center>Transhef <b>(alpha)</b></h2>
-
-A simple, lightweight and gorgeous translator app for Windows 10 and 11. Avialable soon on GH Releases and Microsoft Store.
 
 ### Features
 - Google Translate-like horizontal language selector
