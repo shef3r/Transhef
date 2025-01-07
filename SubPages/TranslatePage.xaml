@@ -17,15 +17,16 @@
 
         <Grid Margin="0" Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Vertical" Grid.Row="0">
                 <ListView
                     x:Name="InputLanguageScroller"
-                    Height="50"
+                    Height="60"
                     Margin="0"
+                    Padding="0,7.5,0,7.5"
                     CornerRadius="0"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -70,30 +71,32 @@
 
             <Grid Margin="0" Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="60"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Vertical" Grid.Row="0">
                     <ListView
                         x:Name="OutputLanguageScroller"
-                        Margin="0,0,0,0"
-                        CornerRadius="0"
-                        Height="50"
-                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                        ScrollViewer.HorizontalScrollMode="Enabled"
-                        ScrollViewer.VerticalScrollMode="Disabled" Background="Transparent">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" TextAlignment="Center" HorizontalAlignment="Center"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                            Height="60"
+                            Margin="0"
+                            Padding="0,7.5,0,7.5"
+                            CornerRadius="0"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                            ScrollViewer.HorizontalScrollMode="Enabled"
+                            ScrollViewer.VerticalScrollMode="Disabled" Background="Transparent">
+
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Background="Transparent" Orientation="Horizontal" />
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Margin="0,0,2,0" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </StackPanel>
 
