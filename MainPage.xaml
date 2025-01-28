@@ -22,11 +22,7 @@
            Grid.Column="0"
            HorizontalAlignment="Center"
            Width="25" Height="25"
-           Margin="8,0,0,0">
-                <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Square44x44Logo.scale-400.png"/>
-                </Image.Source>
-            </Image>
+           Margin="8,0,0,0" Source="Assets/Square44x44Logo.scale-400.png"/>
             <TextBlock x:Name="TitleBarTextBlock" 
                Text="Transhef" 
                FontSize="13"

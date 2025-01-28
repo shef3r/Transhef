@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="100d1dac-3314-4189-98f4-4aea718b7698"
-    Publisher="CN=shef3r (Bruno R.)"
-    Version="0.0.1.0" />
+    Name="BRStudios.Transhef"
+    Publisher="CN=A43ACDD8-D8D2-4B12-B25B-98D2138C0CFE"
+    Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="100d1dac-3314-4189-98f4-4aea718b7698" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="1484e2fa-2933-4ba4-9565-46fe74475f53" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Transhef</DisplayName>
-    <PublisherDisplayName>Bruno</PublisherDisplayName>
+    <PublisherDisplayName>shefer&apos;s labs</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
