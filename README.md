@@ -14,6 +14,8 @@
 - Customizable for all your needs
 
 ### Installation
+#### Recommended method
+Use the above button to go to the Microsoft Store and download there.
 #### Prebuilt
 - Go to the Releases tab and download both the `.msixbundle` nad `.cer` files.
 - Make sure you have App Installer on your machine (Alternative methods of installation or "debloated" machines are not supported.)
