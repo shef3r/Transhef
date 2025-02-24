@@ -9,35 +9,165 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
-    <Grid x:Name="MainPanel">
-        <Rectangle x:Name="TTB" VerticalAlignment="Top" Canvas.ZIndex="9999" Fill="Transparent" Height="40"/>
-        <Grid x:Name="TTBContent"  
-      Height="48" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+    <Page.Resources>
+        <local:ReverseBooleanConverter
+            x:Key="ReverseBoolean" />
+    </Page.Resources>
+    <Grid
+        x:Name="MainPanel">
+        <Rectangle
+            x:Name="TTB"
+            VerticalAlignment="Top"
+            Canvas.ZIndex="9999"
+            Fill="Transparent"
+            Height="40" />
+        <Grid
+            x:Name="TTBContent"
+            Height="48"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition
+                    Width="40" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="*" />
             </Grid.ColumnDefinitions>
-            <Image x:Name="TitleBarIcon"
-           Grid.Column="0"
-           HorizontalAlignment="Center"
-           Width="25" Height="25"
-           Margin="8,0,0,0" Source="Assets/Square44x44Logo.scale-400.png"/>
-            <TextBlock x:Name="TitleBarTextBlock" 
-               Text="Transhef" 
-               FontSize="13"
-               Grid.Column="1"
-               VerticalAlignment="Center"
-               Margin="10,0,0,0"/>
+            <Image
+                x:Name="TitleBarIcon"
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                Width="25"
+                Height="25"
+                Margin="8,0,0,0"
+                Source="Assets/Square44x44Logo.scale-400.png" />
+            <TextBlock
+                x:Name="TitleBarTextBlock"
+                Text="Transhef"
+                FontSize="13"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Margin="10,0,0,0" />
         </Grid>
-        <NavigationView IsSettingsVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" x:Name="MainNavView" SelectionChanged="MainNavView_SelectionChanged">
-            <NavigationView.MenuItems>
-                <NavigationViewItem Content="Translate" Loaded="Home_Loaded" Icon="Home" x:Name="Home"/>
-                <NavigationViewItem Content="History" Icon="Clock" x:Name="History"/>
-            </NavigationView.MenuItems>
-            <NavigationView.Content>
-                <Frame x:Name="MainFrame"/>
-            </NavigationView.Content>
-        </NavigationView>
+        <Grid
+            x:Name="Content"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Margin="20,40,20,20">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="70" />
+                <RowDefinition
+                    Height="*" />
+                <RowDefinition
+                    Height="70" />
+                <RowDefinition
+                    Height="*" />
+                <RowDefinition
+                    Height="70" />
+            </Grid.RowDefinitions>
+            <Grid
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Grid.Row="0">
+                <!-- Input controls and top right buttons -->
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+                    <AutoSuggestBox
+                        x:Name="InputLanguageScroller"
+                        Height="36"
+                        VerticalContentAlignment="Center"
+                        BorderThickness="0"
+                        Margin="0,0,10,0"
+                        Width="300"
+                        QueryIcon="Zoom"
+                        PlaceholderText="Select an input language..."
+                        IsEnabled="{Binding IsChecked, ElementName=AutoLanguage, Converter={StaticResource ReverseBoolean}}"
+                        TextChanged="InputLanguageScroller_TextChanged">
+                    </AutoSuggestBox>
+                    <ToggleButton
+                        x:Name="AutoLanguage"
+                        Content="Select automatically" Height="36" />
+                    <!-- Recently used languages will be here -->
+                </StackPanel>
+            </Grid>
+            <TextBox
+                x:Name="inputBox"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Grid.Row="1"
+                PlaceholderText="What would you like to translate?"
+                BorderThickness="0"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                TextChanged="inputBox_TextChanged"
+                IsSpellCheckEnabled="False"/>
+            <Grid
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Grid.Row="2">
+                <!-- Input controls and top right buttons -->
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+                    <AutoSuggestBox
+                        x:Name="OutputLanguageScroller"
+                        Height="36"
+                        VerticalContentAlignment="Center"
+                        BorderThickness="0"
+                        Width="300"
+                        QueryIcon="Zoom"
+                        PlaceholderText="Select an output language..."
+                        TextChanged="OutputLanguageScroller_TextChanged">
+                    </AutoSuggestBox>
+                    <!-- Recently used languages will be here -->
+                </StackPanel>
+            </Grid>
+            <TextBox
+                x:Name="outputBox"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Grid.Row="3"
+                PlaceholderText="Your output will appear here..."
+                BorderThickness="0"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                IsSpellCheckEnabled="False"
+                IsReadOnly="True"/>
+            <StackPanel
+                Orientation="Horizontal"
+                Grid.Row="4"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center">
+                <Button
+                    Style="{StaticResource AccentButtonStyle}"
+                    Click="Translate_Clicked"
+                    Height="36">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <FontIcon
+                            Glyph="&#xE895;" />
+                        <TextBlock
+                            Text="Translate" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+                <AppBarButton
+                    Icon="Copy"
+                    Label="Copy"
+                    LabelPosition="Collapsed"
+                    Click="Copy_Clicked" Margin="10,0,0,0" ToolTipService.ToolTip="Copy" Height="50" VerticalContentAlignment="Center"/>
+                <AppBarButton
+                    Margin="10,0,0,0"
+                    CornerRadius="8"
+                    Icon="Switch"
+                    Label="Switch"
+                    LabelPosition="Collapsed"
+                    Height="50"
+                    VerticalContentAlignment="Center"
+                    Click="Switch_Clicked" ToolTipService.ToolTip="Switch languages" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
