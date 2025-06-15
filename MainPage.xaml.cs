@@ -20,6 +20,7 @@ using Windows.UI.WindowManagement;
 using Windows.UI.Xaml.Hosting;
 using TransLib;
 using Windows.ApplicationModel.DataTransfer;
+using System.Threading.Tasks;
 
 namespace Transhef
 {
@@ -28,7 +29,6 @@ namespace Transhef
         public MainPage()
         {
             this.InitializeComponent();
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(600, 500));
             Window.Current.SetTitleBar(TTB);
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
@@ -62,17 +62,33 @@ namespace Transhef
         }
 
         private async void Translate_Clicked(object sender, RoutedEventArgs e) {
-            if (!string.IsNullOrEmpty(InputLanguageScroller.Text)) {
+            if ((bool)AutoLanguage.IsChecked)
+            {
+                await HandleAutoTranslation(sender);
+            }
+            else
+            {
+                await HandleManualTranslation(sender);
+            }
+        }
+
+        private async Task HandleManualTranslation(object sender)
+        {
+            if (!string.IsNullOrEmpty(InputLanguageScroller.Text))
+            {
                 InputLanguageScroller.Text = FindClosestMatch(InputLanguageScroller.Text, TransLib.Variables.LanguagePairs.Keys);
             }
-            if (!string.IsNullOrEmpty(OutputLanguageScroller.Text)) {
+            if (!string.IsNullOrEmpty(OutputLanguageScroller.Text))
+            {
                 OutputLanguageScroller.Text = FindClosestMatch(OutputLanguageScroller.Text, TransLib.Variables.LanguagePairs.Keys);
             }
 
-            if (!string.IsNullOrEmpty(inputBox.Text) && !string.IsNullOrEmpty(InputLanguageScroller.Text) && !string.IsNullOrEmpty(OutputLanguageScroller.Text)) {
+            if (!string.IsNullOrEmpty(inputBox.Text) && !string.IsNullOrEmpty(InputLanguageScroller.Text) && !string.IsNullOrEmpty(OutputLanguageScroller.Text))
+            {
                 (sender as Button).IsEnabled = false;
                 TranslationObject obj = new TranslationObject() { input = inputBox.Text, inputLanguageorCode = InputLanguageScroller.Text.ToString(), outputLanguageorCode = OutputLanguageScroller.Text.ToString() };
-                try {
+                try
+                {
                     Translation translation = await Methods.TranslateAsync(obj);
                     outputBox.Text = translation.output;
                     if (!translation.savedToHistory) { ShowError(null, "Unfortunately, your translation was too long to add to history. Otherwise, it went fine."); }
@@ -80,8 +96,39 @@ namespace Transhef
                 catch (Exception ex) { ShowError(ex); }
                 (sender as Button).IsEnabled = true;
             }
-            else {
+            else
+            {
                 ShowError(null, "One or more required parameters are empty. Check if you selected both an input and output language and you entered a query in the input box.");
+            }
+        }
+
+        private async Task HandleAutoTranslation(object sender)
+        {
+            if (string.IsNullOrEmpty(inputBox.Text) || string.IsNullOrEmpty(OutputLanguageScroller.Text))
+            {
+                ShowError(null, "One or more required parameters are empty. Check if you selected both an input and output language and you entered a query in the input box.");
+                return;
+            }
+            OutputLanguageScroller.Text = FindClosestMatch(OutputLanguageScroller.Text, TransLib.Variables.LanguagePairs.Keys);
+            InputLanguageScroller.Text = string.Empty;
+
+            try
+            {
+                (sender as Button).IsEnabled = false;
+                TranslationObject obj = new TranslationObject() { input = inputBox.Text, inputLanguageorCode = "auto", outputLanguageorCode = OutputLanguageScroller.Text.ToString() };
+                try
+                {
+                    Translation translation = await Methods.TranslateAsync(obj);
+                    outputBox.Text = translation.output;
+                    if (!translation.savedToHistory) { ShowError(null, "Unfortunately, your translation was too long to add to history. Otherwise, it went fine."); }
+                }
+                catch (Exception ex) { ShowError(ex); }
+                (sender as Button).IsEnabled = true;
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex);
+                return;
             }
         }
 
@@ -144,5 +191,9 @@ namespace Transhef
             outputBox.Text = string.Empty;
         }
 
+        private void AutoLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            InputLanguageScroller.Text = string.Empty;
+        }
     }
 }

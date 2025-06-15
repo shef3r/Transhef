@@ -71,10 +71,13 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 Grid.Row="0">
-                <!-- Input controls and top right buttons -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <StackPanel
                     Orientation="Horizontal"
-                    HorizontalAlignment="Left">
+                    HorizontalAlignment="Left"
+                    Grid.Column="0">
                     <AutoSuggestBox
                         x:Name="InputLanguageScroller"
                         Height="36"
@@ -89,8 +92,7 @@
                     </AutoSuggestBox>
                     <ToggleButton
                         x:Name="AutoLanguage"
-                        Content="Select automatically" Height="36" />
-                    <!-- Recently used languages will be here -->
+                        Content="Select automatically" Height="36" Click="AutoLanguage_Click"/>
                 </StackPanel>
             </Grid>
             <TextBox
@@ -108,7 +110,6 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 Grid.Row="2">
-                <!-- Input controls and top right buttons -->
                 <StackPanel
                     Orientation="Horizontal"
                     HorizontalAlignment="Left">
@@ -122,7 +123,6 @@
                         PlaceholderText="Select an output language..."
                         TextChanged="OutputLanguageScroller_TextChanged">
                     </AutoSuggestBox>
-                    <!-- Recently used languages will be here -->
                 </StackPanel>
             </Grid>
             <TextBox
@@ -136,38 +136,67 @@
                 TextWrapping="Wrap"
                 IsSpellCheckEnabled="False"
                 IsReadOnly="True"/>
-            <StackPanel
-                Orientation="Horizontal"
+            <Grid
                 Grid.Row="4"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Stretch"
                 VerticalAlignment="Center">
-                <Button
-                    Style="{StaticResource AccentButtonStyle}"
-                    Click="Translate_Clicked"
-                    Height="36">
-                    <StackPanel
-                        Orientation="Horizontal">
-                        <FontIcon
-                            Glyph="&#xE895;" />
-                        <TextBlock
-                            Text="Translate" Margin="10,0,0,0"/>
-                    </StackPanel>
-                </Button>
-                <AppBarButton
-                    Icon="Copy"
-                    Label="Copy"
-                    LabelPosition="Collapsed"
-                    Click="Copy_Clicked" Margin="10,0,0,0" ToolTipService.ToolTip="Copy" Height="50" VerticalContentAlignment="Center"/>
-                <AppBarButton
-                    Margin="10,0,0,0"
-                    CornerRadius="8"
-                    Icon="Switch"
-                    Label="Switch"
-                    LabelPosition="Collapsed"
-                    Height="50"
-                    VerticalContentAlignment="Center"
-                    Click="Switch_Clicked" ToolTipService.ToolTip="Switch languages" />
-            </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <Button
+                        Style="{StaticResource AccentButtonStyle}"
+                        Click="Translate_Clicked"
+                        Height="36">
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <FontIcon
+                                Glyph="&#xE895;" />
+                            <TextBlock
+                                Text="Translate"
+                                Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <CommandBar
+                        DefaultLabelPosition="Right"
+                        VerticalAlignment="Center"
+                        OverflowButtonVisibility="Collapsed">
+                        <AppBarButton
+                            Icon="Copy"
+                            Label="Copy"
+                            Click="Copy_Clicked"
+                            Margin="10,0,0,0"
+                            ToolTipService.ToolTip="Copy"
+                            Height="50"
+                            VerticalContentAlignment="Center"/>
+                        <AppBarButton
+                            Margin="10,0,0,0"
+                            Icon="Switch"
+                            Label="Switch"
+                            Height="50"
+                            VerticalContentAlignment="Center"
+                            Click="Switch_Clicked"
+                            ToolTipService.ToolTip="Switch languages" />
+                    </CommandBar>
+                </StackPanel>
+                <CommandBar 
+                    Grid.Column="2"
+                    DefaultLabelPosition="Collapsed">
+                    <AppBarButton 
+                        Label="History"
+                        ToolTipService.ToolTip="History">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="&#xE81C;" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton 
+                      Label="Settings"
+                      Icon="Setting"
+                      ToolTipService.ToolTip="Settings"/>
+                </CommandBar>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

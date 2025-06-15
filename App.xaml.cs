@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,7 +28,6 @@ namespace Transhef
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             bool canEnablePrelaunch = Windows.Foundation.Metadata.ApiInformation.IsMethodPresent("Windows.ApplicationModel.Core.CoreApplication", "EnablePrelaunch");
-
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame == null)
             {
@@ -40,7 +40,7 @@ namespace Transhef
 
                 Window.Current.Content = rootFrame;
             }
-
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(500, 480));
             if (e.PrelaunchActivated == false)
             {
                 if (canEnablePrelaunch)

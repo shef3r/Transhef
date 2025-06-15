@@ -14,40 +14,110 @@ namespace TransLib {
             if (obj == null)
                 throw new ArgumentOutOfRangeException();
 
-            string iLangCode = GetLanguageCode(obj.inputLanguageorCode);
-            string oLangCode = GetLanguageCode(obj.outputLanguageorCode);
+            Translation translation = new Translation();
 
-            string[] lines = obj.input.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            StringBuilder translatedText = new StringBuilder();
+            if (obj.inputLanguageorCode == "auto")
+            {
+                string oLangCode = GetLanguageCode(obj.outputLanguageorCode);
 
-            var client = new HttpClient();
+                string[] lines = obj.input.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                StringBuilder translatedText = new StringBuilder();
 
-            foreach (var line in lines) {
-                if (string.IsNullOrWhiteSpace(line))
-                    continue;
+                var client = new HttpClient();
 
-                string url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={iLangCode}&tl={oLangCode}&dt=t&q={Uri.EscapeDataString(line)}";
-                var request = new HttpRequestMessage(HttpMethod.Get, url);
-                var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
+                foreach (var line in lines)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
 
-                string jsonString = await response.Content.ReadAsStringAsync();
-                string translatedLine = ExtractTranslation(jsonString);
-                translatedText.AppendLine(translatedLine);
+                    string url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl={oLangCode}&dt=t&q={Uri.EscapeDataString(line)}";
+                    var request = new HttpRequestMessage(HttpMethod.Get, url);
+                    var response = await client.SendAsync(request);
+                    response.EnsureSuccessStatusCode();
+
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    string translatedLine = ExtractAutoTranslation(jsonString);
+                    translatedText.AppendLine(translatedLine);
+                }
+
+                translation = new Translation
+                {
+                    input = obj.input,
+                    inputLanguage = string.Empty,
+                    output = translatedText.ToString().Trim(),
+                    outputLanguage = Variables.LanguagePairs.FirstOrDefault(x => x.Value == oLangCode).Key,
+                    savedToHistory = true
+                };
             }
+            else
+            {
+                string iLangCode = GetLanguageCode(obj.inputLanguageorCode);
+                string oLangCode = GetLanguageCode(obj.outputLanguageorCode);
 
-            Translation translation = new Translation {
-                input = obj.input,
-                inputLanguage = Variables.LanguagePairs.FirstOrDefault(x => x.Value == iLangCode).Key,
-                output = translatedText.ToString().Trim(),
-                outputLanguage = Variables.LanguagePairs.FirstOrDefault(x => x.Value == oLangCode).Key,
-                savedToHistory = true
-            };
+                string[] lines = obj.input.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                StringBuilder translatedText = new StringBuilder();
+
+                var client = new HttpClient();
+
+                foreach (var line in lines)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
+
+                    string url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={iLangCode}&tl={oLangCode}&dt=t&q={Uri.EscapeDataString(line)}";
+                    var request = new HttpRequestMessage(HttpMethod.Get, url);
+                    var response = await client.SendAsync(request);
+                    response.EnsureSuccessStatusCode();
+
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    string translatedLine = ExtractTranslation(jsonString);
+                    translatedText.AppendLine(translatedLine);
+                }
+
+                translation = new Translation
+                {
+                    input = obj.input,
+                    inputLanguage = Variables.LanguagePairs.FirstOrDefault(x => x.Value == iLangCode).Key,
+                    output = translatedText.ToString().Trim(),
+                    outputLanguage = Variables.LanguagePairs.FirstOrDefault(x => x.Value == oLangCode).Key,
+                    savedToHistory = true
+                };
+            }
 
             try { AddToHistory(translation); }
             catch { translation.savedToHistory = false; }
 
             return translation;
+        }
+
+        private static string ExtractAutoTranslation(string jsonString)
+        {
+            JsonDocument jsonDoc = JsonDocument.Parse(jsonString);
+            JsonElement root = jsonDoc.RootElement;
+            StringBuilder translationBuilder = new StringBuilder();
+
+            if (root.ValueKind == JsonValueKind.Array && root.GetArrayLength() > 0)
+            {
+                JsonElement mainTranslations = root[0];
+                if (mainTranslations.ValueKind == JsonValueKind.Array)
+                {
+                    foreach (JsonElement translationUnit in mainTranslations.EnumerateArray())
+                    {
+                        if (translationUnit.ValueKind == JsonValueKind.Array &&
+                            translationUnit.GetArrayLength() > 0)
+                        {
+                            JsonElement translationPart = translationUnit[0];
+                            if (translationPart.ValueKind == JsonValueKind.String)
+                            {
+                                string translatedLine = translationPart.GetString().Trim();
+                                translationBuilder.AppendLine(translatedLine);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return translationBuilder.ToString().Trim();
         }
 
         internal static string ExtractTranslation(string jsonString) {
