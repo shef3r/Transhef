@@ -57,11 +57,11 @@
             Margin="20,40,20,20">
             <Grid.RowDefinitions>
                 <RowDefinition
-                    Height="70" />
+                    Height="55" />
                 <RowDefinition
                     Height="*" />
                 <RowDefinition
-                    Height="70" />
+                    Height="55" />
                 <RowDefinition
                     Height="*" />
                 <RowDefinition
@@ -83,12 +83,16 @@
                         Height="36"
                         VerticalContentAlignment="Center"
                         BorderThickness="0"
-                        Margin="0,0,10,0"
+                        Margin="0,0,8,0"
                         Width="300"
-                        QueryIcon="Zoom"
                         PlaceholderText="Select an input language..."
                         IsEnabled="{Binding IsChecked, ElementName=AutoLanguage, Converter={StaticResource ReverseBoolean}}"
                         TextChanged="InputLanguageScroller_TextChanged">
+                        <AutoSuggestBox.QueryIcon>
+                            <muxc:AnimatedIcon Width="17">
+                                <animatedvisuals:AnimatedFindVisualSource/>
+                            </muxc:AnimatedIcon>
+                        </AutoSuggestBox.QueryIcon>
                     </AutoSuggestBox>
                     <ToggleButton
                         x:Name="AutoLanguage"
@@ -105,7 +109,8 @@
                 AcceptsReturn="True"
                 TextWrapping="Wrap"
                 TextChanged="inputBox_TextChanged"
-                IsSpellCheckEnabled="False"/>
+                IsSpellCheckEnabled="False"
+                Margin="0,0,0,10"/>
             <Grid
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
@@ -119,9 +124,13 @@
                         VerticalContentAlignment="Center"
                         BorderThickness="0"
                         Width="300"
-                        QueryIcon="Zoom"
                         PlaceholderText="Select an output language..."
                         TextChanged="OutputLanguageScroller_TextChanged">
+                        <AutoSuggestBox.QueryIcon>
+                            <muxc:AnimatedIcon Width="17">
+                                <animatedvisuals:AnimatedFindVisualSource/>
+                            </muxc:AnimatedIcon>
+                        </AutoSuggestBox.QueryIcon>
                     </AutoSuggestBox>
                 </StackPanel>
             </Grid>
