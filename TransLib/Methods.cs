@@ -43,7 +43,7 @@ namespace TransLib {
                 translation = new Translation
                 {
                     input = obj.input,
-                    inputLanguage = string.Empty,
+                    inputLanguage = "Auto",
                     output = translatedText.ToString().Trim(),
                     outputLanguage = Variables.LanguagePairs.FirstOrDefault(x => x.Value == oLangCode).Key,
                     savedToHistory = true
@@ -157,7 +157,7 @@ namespace TransLib {
                     }
                 }
 
-                historyList.Add(translation);
+                historyList.Insert(0, translation);
                 localSettings["history"] = JsonSerializer.Serialize(historyList);
             }
         }

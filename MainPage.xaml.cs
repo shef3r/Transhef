@@ -195,5 +195,10 @@ namespace Transhef
         {
             InputLanguageScroller.Text = string.Empty;
         }
+
+        private void HistoryFrame_Loaded(object sender, RoutedEventArgs e)
+        {
+            HistoryFrame.Navigate(typeof(HistoryPage));
+        }
     }
 }

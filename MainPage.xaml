@@ -92,7 +92,7 @@
                     </AutoSuggestBox>
                     <ToggleButton
                         x:Name="AutoLanguage"
-                        Content="Select automatically" Height="36" Click="AutoLanguage_Click"/>
+                        Content="Auto" Height="36" Click="AutoLanguage_Click"/>
                 </StackPanel>
             </Grid>
             <TextBox
@@ -186,15 +186,29 @@
                     DefaultLabelPosition="Collapsed">
                     <AppBarButton 
                         Label="History"
+                        Width="50"
                         ToolTipService.ToolTip="History">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="&#xE81C;" />
                         </AppBarButton.Icon>
+                        <AppBarButton.Flyout>
+                            <Flyout>
+                                <Frame
+                                    Margin="-45, -30"
+                                    Loaded="HistoryFrame_Loaded"
+                                    MinWidth="300"
+                                    MinHeight="400"
+                                    x:Name="HistoryFrame"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch" />
+                            </Flyout>
+                        </AppBarButton.Flyout>
                     </AppBarButton>
-                    <AppBarButton 
+                    <!--<AppBarButton 
+                      Width="50"
                       Label="Settings"
                       Icon="Setting"
-                      ToolTipService.ToolTip="Settings"/>
+                      ToolTipService.ToolTip="Settings"/>-->
                 </CommandBar>
             </Grid>
         </Grid>
